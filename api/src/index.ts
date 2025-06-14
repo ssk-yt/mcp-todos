@@ -13,9 +13,9 @@ app.use(
   })
 )
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
+// app.get('/', (c) => {
+//   return c.text('Hello Hono!')
+// })
 
 app.get("/systems/ping", (c) => {
   return c.text("pong")

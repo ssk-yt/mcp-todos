@@ -1,12 +1,10 @@
+import { google } from "@ai-sdk/google";
+import { streamText } from "ai";
 import { NextRequest } from "next/server";
-import { 
-    experimental_createMCPClient as createMcpClient,
-    streamText
-} from "ai";
-import { google } from "@ai-sdk/google"
+import { experimental_createMCPClient as createMcpClient } from "ai";
 
 export async function POST(req: NextRequest) {
-  console.log("API requested")
+
   const mcpClient = await createMcpClient({
     transport: {
       type: "sse",
@@ -18,7 +16,7 @@ export async function POST(req: NextRequest) {
   const tools = await mcpClient.tools();
 
   const result = streamText({
-    model: google("gemini-1.5-pro-latest"),
+    model: google("gemini-2.0-flash-lite"),
     messages,
     tools,
     onFinish: () => {

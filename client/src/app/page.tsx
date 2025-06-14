@@ -15,7 +15,6 @@ const getTodos = async() => {
 }
 
 export default function Home() {
-  // 
   const query = useQuery({
     queryKey: ["todos"],
     queryFn: getTodos,
@@ -24,8 +23,8 @@ export default function Home() {
   const {messages, input, handleInputChange, handleSubmit } = useChat({
     api: "/api/chat",
     experimental_throttle: 1000,
-  })
-  // console.log(messages)
+  });
+
   return (
     <div>
       {query.data?.map((todo) => (
@@ -36,6 +35,7 @@ export default function Home() {
         </div>
       ))}
       <div>
+        {/* formが送信されたら、入力されたチャットの内容が/api/chatに投げられる。 */}
         <form onSubmit= {handleSubmit}>
           <input value={input} onChange={handleInputChange} />
           <button type="submit">Send</button>
