@@ -62,8 +62,15 @@ async function deleteTodoItem(id) {
 mcpServer.tool("deleteTodoItem", "Delete a todo item", {
     id: z.number().describe("ID of the Todo to delete"),
 }, async ({ id }) => {
-    console.log("[deleteTodoItem] ID:", id);
     const success = await deleteTodoItem(id);
+    console.log("[deleteTodoItem] tool返答:", {
+        content: [
+            {
+                type: "text",
+                text: `${id}を削除しました`,
+            },
+        ],
+    });
     return {
         content: [
             {
